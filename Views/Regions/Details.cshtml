@@ -1,27 +1,51 @@
 ﻿@{
     ViewData["Title"] = "Regions";
+    Layout = "_Layout2";
 }
 
-<div class="col-md-12">
-    &nbsp;
-    <h1 class="aligncenter">Regions</h1>
-
-    <table class="table table-bordered table-hover">
-        <tr>
-            <th>ID</th>
-            <th>Continent</th>
-            <th>Regions</th>
-        </tr>
+<div class="col-md-2 continent_ref">
+    &nbsp;<br>
+    <a asp-controller="Continents" asp-action="Index">
         @{
-            foreach(var item in ViewBag.regions){
-                <tr>
-                    <td>@item.region_id</td>
-                    <td>@item.continent</td>
-                    <td>
-                        <a asp-controller="Countries" asp-action="Details" asp-route-id="@item.region_id">@item.region</a>
-                    </td>
-                </tr>
-            }
+            var dirImgReturn ="/img/continent_"+ ViewBag.continent.continent_id+".png";
         }
-    </table>
+        <img class="img-thumbnail" src="@dirImgReturn" height="50px">
+    </a>
+    <div class="middle">
+        <div class="text-middle">
+            <a asp-controller="Continents" asp-action="Index">Return to continents</a>
+        </div>
+    </div>
 </div>
+
+<div class="col-md-9">
+    &nbsp;<br><br>
+    <h1 class="aligncenter">Regions of @ViewBag.continent.continent</h1>
+</div>
+<div class="col-md-12">
+    <hr><br>
+</div>
+
+@{
+    foreach(var item in ViewBag.regions){
+
+        <div class="col-md-3">
+            <div class="card continent_ref">
+                <a asp-controller="Countries" asp-action="Details" asp-route-id="@item.region_id">
+                @{
+                    var dirImg ="/img/region_"+ item.continent_id+".png";
+                }
+                <img class="img-thumbnail image_thumbnail" src="@dirImg">
+                </a>
+                <div class="middle">
+                    <div class="text-middle">
+                        <a asp-controller="Countries" asp-action="Details" asp-route-id="@item.region_id">Show Countries</a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <h3 class="title aligncenter">@item.region</h3>
+                </div>
+            </div>
+        </div>
+    }
+}

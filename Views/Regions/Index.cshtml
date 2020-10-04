@@ -1,27 +1,36 @@
 ﻿@{
     ViewData["Title"] = "Regions";
+    Layout = "_Layout2";
 }
 
 <div class="col-md-12">
-    &nbsp;
-    <h1 class="aligncenter">Regions</h1>
-
-    <table class="table table-bordered">
-        <tr>
-            <th>ID</th>
-            <th>Continent</th>
-            <th>Regions</th>
-        </tr>
-        @{
-            foreach(var item in ViewBag.regions){
-                <tr>
-                    <td>@item.region_id</td>
-                    <td>@item.continent</td>
-                    <td>
-                        <a asp-controller="Countries" asp-action="Details" asp-route-id="@item.region_id">@item.region</a>
-                    </td>
-                </tr>
-            }
-        }
-    </table>
+    &nbsp;<br><br>
+    <h1 class="aligncenter">All regions of the world</h1>
 </div>
+<div class="col-md-12">
+    <hr><br>
+</div>
+
+@{
+    foreach(var item in ViewBag.regions){
+
+        <div class="col-md-3">
+            <div class="card continent_ref">
+                <a asp-controller="Countries" asp-action="Details" asp-route-id="@item.region_id">
+                @{
+                    var dirImg ="/img/region_"+ item.continent_id+".png";
+                }
+                <img class="img-thumbnail image_thumbnail" src="@dirImg">
+                </a>
+                <div class="middle">
+                    <div class="text-middle">
+                        <a asp-controller="Countries" asp-action="Details" asp-route-id="@item.region_id">Show Countries</a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <h3 class="title aligncenter">@item.region</h3>
+                </div>
+            </div>
+        </div>
+    }
+}

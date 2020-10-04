@@ -31,7 +31,8 @@ namespace geo_kids_web_net.Controllers
             select new{
                 r.region_id,
                 r.region,
-                c.continent
+                c.continent,
+                c.continent_id
             }).ToList();
 
             ViewBag.regions = regions.Select(v =>{
@@ -39,6 +40,7 @@ namespace geo_kids_web_net.Controllers
                 eo.region_id = v.region_id;
                 eo.region = v.region;
                 eo.continent = v.continent;
+                eo.continent_id = v.continent_id;
                 return eo;
             }).ToArray();
             return View();
@@ -46,6 +48,10 @@ namespace geo_kids_web_net.Controllers
 
         public IActionResult Details(int id)
         {
+            var continent = _context.Continents.Find(id);
+
+            ViewBag.continent = continent;
+
             var regions = (from r in _context.Regions
             join c in _context.Continents on r.continent_id equals c.continent_id
             where c.continent_id == id
@@ -53,7 +59,8 @@ namespace geo_kids_web_net.Controllers
             select new{
                 r.region_id,
                 r.region,
-                c.continent
+                c.continent,
+                c.continent_id
             }).ToList();
 
             ViewBag.regions = regions.Select(v =>{
@@ -61,6 +68,7 @@ namespace geo_kids_web_net.Controllers
                 eo.region_id = v.region_id;
                 eo.region = v.region;
                 eo.continent = v.continent;
+                eo.continent_id = v.continent_id;
                 return eo;
             }).ToArray();
             return View();
