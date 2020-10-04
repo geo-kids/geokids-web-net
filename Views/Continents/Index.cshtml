@@ -14,7 +14,7 @@
 
         <div class="col-md-3">
             <div class="card continent_ref">
-                <a href="/regions/1">
+                <a asp-controller="Regions" asp-action="Details" asp-route-id="@item.continent_id">
                 @{
                     var dirImg ="/img/continent_"+ item.continent_id+".png";
                 }
