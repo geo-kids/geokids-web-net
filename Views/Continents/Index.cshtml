@@ -1,25 +1,33 @@
 ﻿@{
     ViewData["Title"] = "Continents";
+    Layout = "_Layout2";
 }
 
 <div class="col-md-12">
     &nbsp;
     <h1 class="aligncenter">Continents</h1>
-
-    <table class="table table-bordered table-hover">
-        <tr>
-            <th>ID</th>
-            <th>Continent</th>
-        </tr>
-        @{
-            foreach(var item in ViewBag.continents){
-                <tr>
-                    <td>@item.continent_id</td>
-                    <td>
-                        <a asp-controller="Regions" asp-action="Details" asp-route-id="@item.continent_id">@item.continent</a>
-                    </td>
-                </tr>
-            }
-        }
-    </table>
 </div>
+
+
+@{
+    foreach(var item in ViewBag.continents){
+
+        <div class="col-md-3">
+            <div class="card continent_ref">
+                <a href="/regions/1">
+                <img class="img-thumbnail image_thumbnail" src="~/img/continent_1.png">
+                </a>
+                <div class="middle">
+                    <div class="text-middle">
+                        <a asp-controller="Regions" asp-action="Details" asp-route-id="@item.continent_id">Show Regions</a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <h3 class="title aligncenter">@item.continent</h3>
+                </div>
+            </div>
+        </div>
+    }
+}
+
+
