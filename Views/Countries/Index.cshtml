@@ -1,27 +1,33 @@
 ﻿@{
     ViewData["Title"] = "Countries";
+    Layout = "_Layout2";
 }
 
 <div class="col-md-12">
-    &nbsp;
-    <h1 class="aligncenter">Countries</h1>
-
-    <table class="table table-bordered table-hover">
-        <tr>
-            <th>Continent</th>
-            <th>Region</th>
-            <th>ID</th>
-            <th>Country</th>
-        </tr>
-        @{
-            foreach(var item in ViewBag.countries){
-                <tr>
-                    <td>@item.continent</td>
-                    <td>@item.region</td>
-                    <td>@item.country_id</td>
-                    <td>@item.country</td>
-                </tr>
-            }
-        }
-    </table>
+    &nbsp;<br><br>
+    <h1 class="aligncenter">All countries of the world</h1>
 </div>
+<div class="col-md-12">
+    <hr><br>
+</div>
+
+@{
+    foreach(var item in ViewBag.countries){
+
+        <div class="col-md-3">
+            <div class="card">
+                <img class="card-img-top" src="@item.flag" onerror="this.onerror=null;this.src='https://via.placeholder.com/250x175.png?text=No+Flag';" height="175px">
+                <div class="card-body">
+                    <h5 class="title aligncenter">@item.country</h5>
+                    <div class="card-text">
+                        <b>Continent: <a asp-controller="Regions" asp-action="Details" asp-route-id="@item.continent_id">@item.continent</a></b>
+                        <br>
+                        <b>Region: <a asp-controller="Countries" asp-action="Details" asp-route-id="@item.region_id">@item.region</a></b>
+                        <br>
+                        <b>Country ID: @item.country_id</b>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}
