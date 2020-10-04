@@ -23,16 +23,16 @@
                 </div>
                 <div class="navbar-collapse collapse"> 
                     <ul class="nav navbar-nav">
-                        <li class="nav-item active">
+                        <li class="nav-item @(ViewContext.RouteData.Values["Controller"].ToString() == "Home" ? "active" : "")">
                             <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home <span class="sr-only">(current)</span></a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item @(ViewContext.RouteData.Values["Controller"].ToString() == "Continents" ? "active" : "")">
                             <a class="nav-link" asp-area="" asp-controller="Continents" asp-action="Index">Continents</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item @(ViewContext.RouteData.Values["Controller"].ToString() == "Regions" ? "active" : "")">
                             <a class="nav-link" asp-area="" asp-controller="Regions" asp-action="Index">Regions</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item @(ViewContext.RouteData.Values["Controller"].ToString() == "Countries" ? "active" : "")">
                             <a class="nav-link" asp-area="" asp-controller="Countries" asp-action="Index">Countries</a>
                         </li>
                     </ul>
