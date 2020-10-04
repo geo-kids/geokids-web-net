@@ -1,8 +1,10 @@
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace geo_kids_web_net.Models
 {
+    [Table("vw_countries")]
     public class Countries
     {
         [Key]
