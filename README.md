@@ -12,7 +12,7 @@ dotnet run
 
 ### Build the container
 ```
-docker build --force-rm -t geokids/geokids-web-net:1.0 .
+docker build --force-rm -t geokids/geokids-web-net:2.0 .
 ```
 
 ### Run the container
@@ -23,5 +23,5 @@ docker run -p 8083:80
     \ -e DB_HOST=<db_hostname>
     \ -e DB_PORT=<db_port> 
     \ -e DB_NAME=<db_name> 
-    \ --name geokids-web-net -d geokids/geokids-web-net:1.0
+    \ --name geokids-web-net -d geokids/geokids-web-net:2.0
 ```
