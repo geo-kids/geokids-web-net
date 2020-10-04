@@ -8,7 +8,8 @@ namespace geo_kids_web_net.Models
         [Key]
         public string country_id { get; set; }
         public string country { get; set; }
-        public string un_m49 {get; set;}
-        public int region_id {get; set;}
+        public string un_m49 {get; set; }
+        public int region_id {get; set; }
+        public string flag { get; set; }
     }
 }

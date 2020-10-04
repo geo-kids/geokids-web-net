@@ -31,17 +31,23 @@ namespace geo_kids_web_net.Controllers
             orderby c.continent_id ascending, r.region_id, cr.country_id 
             select new{
                 cr.country_id,
+                cr.region_id,
+                c.continent_id,
                 cr.country,
                 c.continent,
-                r.region
+                r.region,
+                cr.flag
             }).ToList();
 
             ViewBag.countries = countries.Select(v =>{
                 dynamic eo = new ExpandoObject();
                 eo.country_id = v.country_id;
+                eo.region_id = v.region_id;
+                eo.continent_id = v.continent_id;
                 eo.country = v.country;
                 eo.continent = v.continent;
                 eo.region = v.region;
+                eo.flag = v.flag;
                 return eo;
             }).ToArray();
             return View();
@@ -49,6 +55,10 @@ namespace geo_kids_web_net.Controllers
 
         public IActionResult Details(int id)
         {
+            var region = _context.Regions.Find(id);
+
+            ViewBag.region = region;
+
             var countries = (from r in _context.Regions
             join c in _context.Continents on r.continent_id equals c.continent_id
             join cr in _context.Countries on r.region_id equals cr.region_id
@@ -56,17 +66,23 @@ namespace geo_kids_web_net.Controllers
             orderby c.continent_id ascending, r.region_id, cr.country_id 
             select new{
                 cr.country_id,
+                cr.region_id,
+                c.continent_id,
                 cr.country,
                 c.continent,
-                r.region
+                r.region,
+                cr.flag
             }).ToList();
 
             ViewBag.countries = countries.Select(v =>{
                 dynamic eo = new ExpandoObject();
                 eo.country_id = v.country_id;
+                eo.region_id = v.region_id;
+                eo.continent_id = v.continent_id;
                 eo.country = v.country;
                 eo.continent = v.continent;
                 eo.region = v.region;
+                eo.flag = v.flag;
                 return eo;
             }).ToArray();
             return View();
