@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -6,20 +6,27 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using geo_kids_web_net.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace geo_kids_web_net.Controllers
 {
-    public class HomeController : Controller
+    public class ContinentsController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<ContinentsController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        private readonly DemoContext _context;
+
+        public ContinentsController(ILogger<ContinentsController> logger, DemoContext context)
         {
+            _context = context;
             _logger = logger;
         }
 
         public IActionResult Index()
         {
+            var continents = _context.Continents.ToList();
+
+            ViewBag.continents = continents;
             return View();
         }
 
