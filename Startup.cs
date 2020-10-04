@@ -24,8 +24,19 @@ namespace geo_kids_web_net
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var conn = Configuration.GetConnectionString("DemoContext");
+             conn = conn.Replace("DB_USER", Configuration["DB_USER"]);
+             conn = conn.Replace("DB_PASS", Configuration["DB_PASS"]);
+             conn = conn.Replace("DB_HOST", Configuration["DB_HOST"]);
+             conn = conn.Replace("DB_PORT", Configuration["DB_PORT"]);
+             conn = conn.Replace("DB_NAME", Configuration["DB_NAME"]);
+
+            //services.AddDbContext<DemoContext>(options =>
+            //options.UseSqlServer(Configuration.GetConnectionString("DemoContext")));
+
             services.AddDbContext<DemoContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("DemoContext")));
+            options.UseSqlServer(conn));
+
             services.AddControllersWithViews();
         }
 
