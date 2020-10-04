@@ -15,7 +15,10 @@
         <div class="col-md-3">
             <div class="card continent_ref">
                 <a href="/regions/1">
-                <img class="img-thumbnail image_thumbnail" src="~/img/continent_1.png">
+                @{
+                    var dirImg ="/img/continent_"+ item.continent_id+".png";
+                }
+                <img class="img-thumbnail image_thumbnail" src="@dirImg">
                 </a>
                 <div class="middle">
                     <div class="text-middle">
